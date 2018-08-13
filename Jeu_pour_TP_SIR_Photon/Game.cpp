@@ -27,7 +27,7 @@ Game::Game()
 void Game::run()
 {
 	// pointer on the current page
-	Menus page;
+	std::shared_ptr<Menus> page;
 
 	//timeclock
 	sf::Clock clock;
@@ -35,14 +35,13 @@ void Game::run()
 
 	//création unordered map
 	//std::map<std::string, Menus> pageMap;
-	std::unordered_map<std::string, std::unique_ptr<Menus>> pageMap;
+	std::unordered_map<std::string, std::shared_ptr<Menus>> pageMap;
 
 	
 	// inserting values by using [] operator
-	pageMap["FirstPage"] = std::make_unique<FirstMenu>();
+	pageMap["FirstPage"] = std::make_shared<FirstMenu>();
 	
-	//page = FirstMenu();
-	page = *pageMap["FirstPage"];
+	page = pageMap["FirstPage"];
 	
 
 	while (mWindow.isOpen())
@@ -52,7 +51,7 @@ void Game::run()
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
-			processEvents(page);
+			processEvents(*page);
 		}
 		mNetworkLogic.service();
 		render();

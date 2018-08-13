@@ -17,6 +17,7 @@ public:
 	};
 	enum Action {
 		PlaySolo, PlayMulti,
+		Litterature, Histoire, Chant, Musique, Tragedie, Comedie, Danse, Rhetorique, Astrologie,
 		GoFirstMenu, GoSecondMenu,
 		Reponse1, Reponse2, Reponse3,
 		Retour, Quitter
@@ -30,7 +31,7 @@ public:
 	};
 
 	void Menus::display(sf::RenderWindow & renderWindow);
-	void Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse);
+	std::string Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse);
 
 	Id id;
 	sf::Texture fond;

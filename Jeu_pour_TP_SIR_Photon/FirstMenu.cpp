@@ -33,8 +33,6 @@ FirstMenu::FirstMenu()
 	listeBoutton.push_back(std::move(playSoloButton));
 	listeBoutton.push_back(std::move(playMultiButton));
 	listeBoutton.push_back(std::move(exitButton));
-	
-	
 
 }
 

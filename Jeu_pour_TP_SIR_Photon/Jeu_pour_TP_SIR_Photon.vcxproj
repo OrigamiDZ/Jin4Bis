@@ -152,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menus.cpp" />
     <ClCompile Include="NetworkLogic.cpp" />
+    <ClCompile Include="SecondMenu.cpp" />
     <ClCompile Include="StdIO_UIListener.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="Include\NetworkLogic.hpp" />
     <ClInclude Include="Include\UIListener.h" />
     <ClInclude Include="Menus.h" />
+    <ClInclude Include="SecondMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\ResourceHolder.inl" />

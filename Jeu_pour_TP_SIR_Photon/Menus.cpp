@@ -27,7 +27,7 @@ void Menus::display(sf::RenderWindow & renderWindow)
 	renderWindow.display();
 }
 
-void Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse)
+std::string Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse)
 {
 	
 	for (auto const& it : listeBoutton) {
@@ -42,6 +42,11 @@ void Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse)
 		if (bas > yMouse && haut < yMouse && droite > xMouse && gauche < xMouse)
 		{
 			//TODO : gérer les actions
+			if ((*it).action == PlaySolo) {
+				return "SecondPage";
+			}
+			else
+				break;
 		}
 	}
 	

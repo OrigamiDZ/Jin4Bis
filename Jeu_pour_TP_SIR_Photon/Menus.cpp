@@ -1,7 +1,5 @@
 #include "Menus.h"
 
-
-
 Menus::Menus()
 {
 }
@@ -50,4 +48,6 @@ std::string Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int 
 			}
 		}
 	}
+	return "";
+	
 }

@@ -12,6 +12,7 @@
 
 #include "Menus.h"
 #include "FirstMenu.h"
+#include "SecondMenu.h"
 
 
 class Game : private sf::NonCopyable
@@ -32,10 +33,12 @@ class Game : private sf::NonCopyable
 		static const int											Width;
 		static const int											Height;
 		std::unordered_map<std::string, std::shared_ptr<Menus>>		pageMap;
+		std::shared_ptr<Menus>										currentPage;
+
 
 	private:
-		void														processEvents(Menus & page);
-		void														render(Menus & page);
+		void														processEvents(std::shared_ptr<Menus> page);
+		void														render(std::shared_ptr<Menus> page);
 
 	private:
 		static const sf::Time										TimePerFrame;

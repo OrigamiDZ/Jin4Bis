@@ -23,7 +23,7 @@ Game::Game()
 	mPlayerNumber = mNetworkLogic.getNumber();
 
 	pageMap["FirstPage"] = std::make_shared<FirstMenu>();
-
+	pageMap["SecondPage"] = std::make_shared<SecondMenu>();
 
 }
 
@@ -34,8 +34,7 @@ void Game::run()
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	
 	// pointer on the current page
-	std::shared_ptr<Menus> page;
-	page = pageMap["FirstPage"];
+	currentPage = pageMap["FirstPage"];
 	
 	while (mWindow.isOpen())
 	{
@@ -44,25 +43,28 @@ void Game::run()
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
-			processEvents(*page);
+			processEvents(currentPage);
 		}
 		mNetworkLogic.service();
-		render(*page);
+		render(currentPage);
 	}
 
 	mNetworkLogic.disconnect();
 }
 
-void Game::processEvents(Menus & page)
+void Game::processEvents(std::shared_ptr<Menus> page)
 {
 	sf::Event event;
 	while (mWindow.pollEvent(event))
 	{
 		switch (event.type)
 		{
-		case sf::Event::MouseButtonPressed:
-			page.handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
+		case sf::Event::MouseButtonPressed: {
+			std::string todo = (*page).handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
+			if (todo != "")
+				currentPage = pageMap[todo];
 			break;
+		}
 
 		case sf::Event::Closed:
 			mWindow.close();
@@ -72,10 +74,10 @@ void Game::processEvents(Menus & page)
 }
 
 
-void Game::render(Menus & page)
+void Game::render(std::shared_ptr<Menus> page)
 {
 	mWindow.clear();
 
-	page.display(mWindow);
+	(*page).display(mWindow);
 }
 

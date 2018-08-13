@@ -34,7 +34,7 @@ class Game : private sf::NonCopyable
 
 	private:
 		void					processEvents(Menus & page);
-		void					render();		
+		void					render(Menus & page);
 
 	private:
 		static const sf::Time	TimePerFrame;

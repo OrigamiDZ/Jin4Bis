@@ -54,7 +54,7 @@ void Game::run()
 			processEvents(*page);
 		}
 		mNetworkLogic.service();
-		render();
+		render(*page);
 	}
 
 	mNetworkLogic.disconnect();
@@ -79,10 +79,10 @@ void Game::processEvents(Menus & page)
 }
 
 
-void Game::render()
+void Game::render(Menus & page)
 {
 	mWindow.clear();
 
-	mWindow.display();
+	page.display(mWindow);
 }
 

@@ -22,28 +22,21 @@ Game::Game()
 	mNetworkLogic.joinOrCreateRoom(gameName);
 	mPlayerNumber = mNetworkLogic.getNumber();
 
+	pageMap["FirstPage"] = std::make_shared<FirstMenu>();
+
+
 }
 
 void Game::run()
 {
-	// pointer on the current page
-	std::shared_ptr<Menus> page;
-
 	//timeclock
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
-
-	//création unordered map
-	//std::map<std::string, Menus> pageMap;
-	std::unordered_map<std::string, std::shared_ptr<Menus>> pageMap;
-
 	
-	// inserting values by using [] operator
-	pageMap["FirstPage"] = std::make_shared<FirstMenu>();
-	
+	// pointer on the current page
+	std::shared_ptr<Menus> page;
 	page = pageMap["FirstPage"];
 	
-
 	while (mWindow.isOpen())
 	{
 		sf::Time elapsedTime = clock.restart();

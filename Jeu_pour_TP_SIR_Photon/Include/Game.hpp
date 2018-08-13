@@ -17,33 +17,34 @@
 class Game : private sf::NonCopyable
 {
 	public:
-								Game();
-		void					run();
+																	Game();
+		void														run();
 
 		enum Action { Rate, Reponse1, Reponse2, Reponse3, Quitter };
 		struct MenuItem
 		{
 		public:
-			sf::Rect<int> rect;
-			Action action;
+			sf::Rect<int>	rect;
+			Action			action;
 		};
 
 	public:
-		static const int		Width;
-		static const int		Height;
+		static const int											Width;
+		static const int											Height;
+		std::unordered_map<std::string, std::shared_ptr<Menus>>		pageMap;
 
 	private:
-		void					processEvents(Menus & page);
-		void					render(Menus & page);
+		void														processEvents(Menus & page);
+		void														render(Menus & page);
 
 	private:
-		static const sf::Time	TimePerFrame;
+		static const sf::Time										TimePerFrame;
 
-		sf::RenderWindow		mWindow;
+		sf::RenderWindow											mWindow;
 
-		int						mPlayerNumber;
+		int															mPlayerNumber;
 
-		NetworkLogic            mNetworkLogic;
+		NetworkLogic												mNetworkLogic;
 };
 
 #endif // GAME_HPP

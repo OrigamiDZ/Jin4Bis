@@ -42,17 +42,12 @@ std::string Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int 
 		if (bas > yMouse && haut < yMouse && droite > xMouse && gauche < xMouse)
 		{
 			//TODO : gérer les actions
-			if ((*it).action == PlaySolo) {
+			switch ((*it).action) {
+			case PlaySolo:
 				return "SecondPage";
+			default:
+				return "";
 			}
-			else
-				break;
 		}
 	}
-	
 }
-
-
-
-
-

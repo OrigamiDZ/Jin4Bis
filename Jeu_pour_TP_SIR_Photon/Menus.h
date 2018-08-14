@@ -20,7 +20,8 @@ public:
 		Litterature, Histoire, Chant, Musique, Tragedie, Comedie, Danse, Rhetorique, Astrologie,
 		GoFirstMenu, GoSecondMenu,
 		Reponse1, Reponse2, Reponse3,
-		Retour, Quitter
+		Quitter,
+		Vide
 	};
 
 	struct MenuItem
@@ -31,7 +32,7 @@ public:
 	};
 
 	void Menus::display(sf::RenderWindow & renderWindow);
-	std::string Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse);
+	Action Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse);
 
 	Id id;
 	sf::Texture fond;
@@ -39,6 +40,8 @@ public:
 	std::vector<std::unique_ptr<MenuItem>> listeBoutton;
 	std::vector<std::unique_ptr<sf::Text>> listeTexte;
 	
+	Action currentModeM = Vide;
+	Action currentThemeM = Vide;
 
 };
 

@@ -22,9 +22,8 @@ Game::Game()
 	mNetworkLogic.joinOrCreateRoom(gameName);
 	mPlayerNumber = mNetworkLogic.getNumber();
 
-	pageMap["FirstPage"] = std::make_shared<FirstMenu>();
-	pageMap["SecondPage"] = std::make_shared<SecondMenu>();
-
+	pageMap[Menus::GoFirstMenu] = std::make_shared<FirstMenu>();
+	pageMap[Menus::GoSecondMenu] = std::make_shared<SecondMenu>();
 }
 
 void Game::run()
@@ -34,7 +33,7 @@ void Game::run()
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	
 	// pointer on the current page
-	currentPage = pageMap["FirstPage"];
+	currentPage = pageMap[Menus::GoFirstMenu];
 	
 	while (mWindow.isOpen())
 	{
@@ -60,9 +59,42 @@ void Game::processEvents(std::shared_ptr<Menus> page)
 		switch (event.type)
 		{
 		case sf::Event::MouseButtonPressed: {
-			std::string todo = (*page).handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
-			if (todo != "")
+			Menus::Action todo = (*page).handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
+
+			switch (todo) {
+
+			case Menus::PlaySolo :
+			case Menus::PlayMulti :
+				currentModeG = todo;
+				currentPage = pageMap[Menus::GoSecondMenu];
+				break;
+
+			case Menus::Litterature :
+			case Menus::Histoire :
+			case Menus::Chant :
+			case Menus::Musique :
+			case Menus::Tragedie :
+			case Menus::Comedie: 
+			case Menus::Danse : 
+			case Menus::Rhetorique :
+			case Menus::Astrologie :
+				currentThemeG = todo;
+				break;
+				
+			case Menus::GoFirstMenu :
+			case Menus::GoSecondMenu:
 				currentPage = pageMap[todo];
+				break;
+
+			case Menus::Reponse1 :
+			case Menus::Reponse2 :
+			case Menus::Reponse3 :
+				break;
+
+			case Menus::Quitter :
+				mWindow.close();
+				break;
+			}
 			break;
 		}
 

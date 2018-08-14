@@ -149,9 +149,11 @@
   <ItemGroup>
     <ClCompile Include="FirstMenu.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LoadData.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menus.cpp" />
     <ClCompile Include="NetworkLogic.cpp" />
+    <ClCompile Include="Questions.cpp" />
     <ClCompile Include="SecondMenu.cpp" />
     <ClCompile Include="StdIO_UIListener.cpp" />
   </ItemGroup>
@@ -164,7 +166,9 @@
     <ClInclude Include="Include\StringHelpers.hpp" />
     <ClInclude Include="Include\NetworkLogic.hpp" />
     <ClInclude Include="Include\UIListener.h" />
+    <ClInclude Include="LoadData.h" />
     <ClInclude Include="Menus.h" />
+    <ClInclude Include="Questions.h" />
     <ClInclude Include="SecondMenu.h" />
   </ItemGroup>
   <ItemGroup>

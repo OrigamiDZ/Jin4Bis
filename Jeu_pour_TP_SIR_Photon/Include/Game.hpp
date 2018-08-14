@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <map>
 #include <unordered_map>
 #include <memory>
 
@@ -13,6 +12,8 @@
 #include "Menus.h"
 #include "FirstMenu.h"
 #include "SecondMenu.h"
+#include "Questions.h"
+#include "LoadData.h"
 
 
 class Game : private sf::NonCopyable
@@ -21,19 +22,24 @@ class Game : private sf::NonCopyable
 																	Game();
 		void														run();
 
-		enum Action { Rate, Reponse1, Reponse2, Reponse3, Quitter };
+
 		struct MenuItem
 		{
 		public:
-			sf::Rect<int>	rect;
-			Action			action;
+			sf::Rect<int>			rect;
+			Menus::Action			action;
 		};
 
 	public:
 		static const int											Width;
 		static const int											Height;
-		std::unordered_map<std::string, std::shared_ptr<Menus>>		pageMap;
+		std::unordered_map<Menus::Action, std::shared_ptr<Menus>>	pageMap;
 		std::shared_ptr<Menus>										currentPage;
+
+		Menus::Action												currentModeG = Menus::Vide;
+		Menus::Action												currentThemeG = Menus::Vide;
+
+		LoadData													data;
 
 
 	private:

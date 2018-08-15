@@ -36,9 +36,11 @@ public:
 
 	Id id;
 	sf::Texture fond;
+	sf::Font font;
+
 	
 	std::vector<std::unique_ptr<MenuItem>> listeBoutton;
-	std::vector<std::unique_ptr<sf::Text>> listeTexte;
+	std::vector<std::shared_ptr<sf::Text>> listeTexte;
 	
 	Action currentModeM = Vide;
 	Action currentThemeM = Vide;

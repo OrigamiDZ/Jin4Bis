@@ -24,6 +24,7 @@ Game::Game()
 
 	pageMap[Menus::GoFirstMenu] = std::make_shared<FirstMenu>();
 	pageMap[Menus::GoSecondMenu] = std::make_shared<SecondMenu>();
+
 }
 
 void Game::run()
@@ -42,16 +43,16 @@ void Game::run()
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
-			processEvents(currentPage);
+			processEvents();
 		}
 		mNetworkLogic.service();
-		render(currentPage);
+		render();
 	}
 
 	mNetworkLogic.disconnect();
 }
 
-void Game::processEvents(std::shared_ptr<Menus> page)
+void Game::processEvents()
 {
 	sf::Event event;
 	while (mWindow.pollEvent(event))
@@ -59,7 +60,7 @@ void Game::processEvents(std::shared_ptr<Menus> page)
 		switch (event.type)
 		{
 		case sf::Event::MouseButtonPressed: {
-			Menus::Action todo = (*page).handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
+			Menus::Action todo = (*currentPage).handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
 
 			switch (todo) {
 
@@ -79,6 +80,7 @@ void Game::processEvents(std::shared_ptr<Menus> page)
 			case Menus::Rhetorique :
 			case Menus::Astrologie :
 				currentThemeG = todo;
+				currentPage = std::make_shared<Questions>(true, currentThemeG, data);
 				break;
 				
 			case Menus::GoFirstMenu :
@@ -89,6 +91,7 @@ void Game::processEvents(std::shared_ptr<Menus> page)
 			case Menus::Reponse1 :
 			case Menus::Reponse2 :
 			case Menus::Reponse3 :
+				(*currentPage).Questions::Advance();
 				break;
 
 			case Menus::Quitter :
@@ -106,10 +109,10 @@ void Game::processEvents(std::shared_ptr<Menus> page)
 }
 
 
-void Game::render(std::shared_ptr<Menus> page)
+void Game::render()
 {
 	mWindow.clear();
 
-	(*page).display(mWindow);
+	(*currentPage).display(mWindow);
 }
 

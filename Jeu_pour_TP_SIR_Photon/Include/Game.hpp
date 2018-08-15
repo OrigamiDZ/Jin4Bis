@@ -43,8 +43,8 @@ class Game : private sf::NonCopyable
 
 
 	private:
-		void														processEvents(std::shared_ptr<Menus> page);
-		void														render(std::shared_ptr<Menus> page);
+		void														processEvents();
+		void														render();
 
 	private:
 		static const sf::Time										TimePerFrame;

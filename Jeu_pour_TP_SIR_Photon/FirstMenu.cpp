@@ -6,7 +6,7 @@ FirstMenu::FirstMenu()
 {
 	fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu.png");
 
-	//PlaySolo menu item coordinates
+	//FirstMenu menu item coordinates
 	std::unique_ptr<MenuItem> playSoloButton(new MenuItem);
 	(*playSoloButton).rect.left = 190;
 	(*playSoloButton).rect.top = 167;
@@ -14,7 +14,7 @@ FirstMenu::FirstMenu()
 	(*playSoloButton).rect.height = 56;
 	(*playSoloButton).action = PlaySolo;
 
-	//PlayMulti menu item coordinates
+	//FirstMenu menu item coordinates
 	std::unique_ptr<MenuItem> playMultiButton(new MenuItem);
 	(*playMultiButton).rect.left = 80;
 	(*playMultiButton).rect.top = 345;

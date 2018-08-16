@@ -7,6 +7,7 @@ Questions::Questions(bool solo, Menus::Action theme, LoadData & data)
 	numTurn = 0;
 
 	playingSolo = solo;
+	currentTheme = theme;
 
 	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
 
@@ -41,7 +42,6 @@ Questions::Questions(bool solo, Menus::Action theme, LoadData & data)
 	listeTexte.push_back(std::move(reponse1));
 	listeTexte.push_back(std::move(reponse2));
 	listeTexte.push_back(std::move(reponse3));
-
 
 	//Update listeBoutton
 	(*reponse1Button).rect.left = 112;
@@ -175,6 +175,54 @@ void Questions::Advance()
 
 		//
 		numTurn++;
+	}
+	else if (numTurn == 5) {
+
+
+		fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu-fin.png");
+
+		while (!listeBoutton.empty())
+		{
+			listeBoutton.pop_back();
+		}
+
+		while (!listeTexte.empty())
+		{
+			listeTexte.pop_back();
+		}
+		
+		//Recommencer menu item coordinates
+		std::unique_ptr<MenuItem> recommencerButton = std::make_unique<MenuItem>();
+		(*recommencerButton).rect.left = 121;
+		(*recommencerButton).rect.top = 437;
+		(*recommencerButton).rect.width = 309;
+		(*recommencerButton).rect.height = 33;
+		(*recommencerButton).action = currentTheme;
+
+		//Histoire menu item coordinates
+		std::unique_ptr<MenuItem> AutreButton = std::make_unique<MenuItem>();
+
+		(*AutreButton).rect.left = 93;
+		(*AutreButton).rect.top = 546;
+		(*AutreButton).rect.width = 356;
+		(*AutreButton).rect.height = 33;
+		(*AutreButton).action = GoSecondMenu;
+
+		listeBoutton.push_back(std::move(recommencerButton));
+		listeBoutton.push_back(std::move(AutreButton));
+
+		//affichage score
+		std::unique_ptr<sf::Text> scoreAff = std::make_unique<sf::Text>();
+		(*scoreAff).setFont(font);
+		(*scoreAff).setCharacterSize(90);
+		(*scoreAff).setFillColor(sf::Color::White);
+		(*scoreAff).setStyle(sf::Text::Regular);
+		(*scoreAff).setPosition(240, 272);
+		(*scoreAff).setString(std::to_string(score));
+
+		listeTexte.push_back(std::move(scoreAff));
+
+
 	}
 	else {
 		this->~Questions();

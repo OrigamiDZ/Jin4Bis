@@ -34,6 +34,10 @@ public:
 	void Menus::display(sf::RenderWindow & renderWindow);
 	Action Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, int yMouse);
 
+	virtual void Menus::Advance();
+	virtual void Menus::UpdateScore(Action answer);
+
+
 	Id id;
 	sf::Texture fond;
 	sf::Font font;

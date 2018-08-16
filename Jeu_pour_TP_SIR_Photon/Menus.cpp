@@ -43,3 +43,11 @@ Menus::Action Menus::handleClick(sf::RenderWindow & renderWindow, int xMouse, in
 	return Vide;
 }
 
+void Menus::Advance()
+{
+}
+
+void Menus::UpdateScore(Action answer)
+{
+}
+

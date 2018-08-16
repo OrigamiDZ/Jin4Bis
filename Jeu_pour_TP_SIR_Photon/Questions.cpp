@@ -3,6 +3,9 @@
 
 Questions::Questions(bool solo, Menus::Action theme, LoadData & data)
 {
+	score = 0;
+	numTurn = 0;
+
 	playingSolo = solo;
 
 	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
@@ -92,7 +95,8 @@ Questions::Questions(bool solo, Menus::Action theme, LoadData & data)
 	// GoFetch
 
 	pugi::xml_node questions = data.questions;
-	pugi::xml_node categorie = questions.child(traduction[theme].c_str());
+	pugi::xml_node categorie = questions.child((traduction[theme]).c_str());
+
 
 	// recherche des nodes des questions
 	for (auto i : choix) {
@@ -120,6 +124,7 @@ Questions::~Questions()
 void Questions::Advance()
 {
 	if (numTurn < 5) {
+
 		//récupération de la question
 		for (pugi::xml_attribute attr = nodes[numTurn].first_attribute(); attr; attr = attr.next_attribute())
 		{
@@ -127,24 +132,24 @@ void Questions::Advance()
 			std::string attrValue = attr.value();
 
 			if (attrName == "enonce") {
-				(*questionAff).setString(attrValue);
+				(*listeTexte[0]).setString(attrValue);
 			}
 		}
 
 
 		//changement de l'affichage de la question pour quelle rentre dans le cadre
-		for (int i = 0; i < int((*questionAff).getString().getSize()); i++)
+		for (int i = 0; i < int((*listeTexte[0]).getString().getSize()); i++)
 		{
 			//Si le caractère dépasse la boundingbox définit et que le caractère n'est pas égal à un retour à la ligne
-			if (((*questionAff).findCharacterPos(i).x >(155 + 246)) && ((*questionAff).getString()[i] != '\n'))
+			if (((*listeTexte[0]).findCharacterPos(i).x >(155 + 246)) && ((*listeTexte[0]).getString()[i] != '\n'))
 			{
 				//On va chercher le dernier caractère espace afin de faire des retour à la ligne par mot et non par caractère
-				while ((*questionAff).getString()[i] != ' ')--i;
+				while ((*listeTexte[0]).getString()[i] != ' ')--i;
 				//On ajoute le caractère de retour à la ligne en remplacent l'espace entre les deux mots par \n
-				sf::String str1 = (*questionAff).getString().toWideString().substr(0, i);
+				sf::String str1 = (*listeTexte[0]).getString().toWideString().substr(0, i);
 				str1 += "\n";
-				str1 += (*questionAff).getString().toWideString().substr(i + 1);
-				(*questionAff).setString(str1);
+				str1 += (*listeTexte[0]).getString().toWideString().substr(i + 1);
+				(*listeTexte[0]).setString(str1);
 			}
 		}
 

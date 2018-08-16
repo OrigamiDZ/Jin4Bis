@@ -81,6 +81,7 @@ void Game::processEvents()
 			case Menus::Astrologie :
 				currentThemeG = todo;
 				currentPage = std::make_shared<Questions>(true, currentThemeG, data);
+				dynamic_cast<Questions&>(*currentPage).Advance();
 				break;
 				
 			case Menus::GoFirstMenu :
@@ -90,8 +91,9 @@ void Game::processEvents()
 
 			case Menus::Reponse1 :
 			case Menus::Reponse2 :
-			case Menus::Reponse3 :
-				(*currentPage).Questions::Advance();
+			case Menus::Reponse3: 
+				dynamic_cast<Questions&>(*currentPage).UpdateScore(todo);
+				dynamic_cast<Questions&>(*currentPage).Advance();
 				break;
 
 			case Menus::Quitter :

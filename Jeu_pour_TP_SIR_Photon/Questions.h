@@ -24,6 +24,8 @@ public:
 	int					numTurn;
 	int					score;
 
+	bool				gameEnded = false;
+
 	Menus::Action		currentTheme;
 
 	std::shared_ptr<sf::Text> pointeurBonneRep = std::make_shared<sf::Text>();

@@ -38,22 +38,27 @@ class Game : private sf::NonCopyable
 
 		Menus::Action												currentMode = Menus::Vide;
 		Menus::Action												currentTheme = Menus::Vide;
-		int															currentScore;
+		int															currentScore = -1;
 
 		Menus::Action												opponentMode = Menus::Vide;
 		Menus::Action												opponentTheme = Menus::Vide;
-		int															opponentScore;
+		int															opponentScore = -1;
+
+		std::unique_ptr<sf::Text>									winOrLose = std::make_unique<sf::Text>();
 
 		LoadData													data;
-
 
 		std::vector<std::string>									vectorOfZeros;
 		std::vector<std::string>									vectorChoice;
 
+		bool														gameEnd = false;
 
 	private:
 		void														processEvents();
 		void														render();
+
+		sf::Font													font;
+
 
 	private:
 		static const sf::Time										TimePerFrame;

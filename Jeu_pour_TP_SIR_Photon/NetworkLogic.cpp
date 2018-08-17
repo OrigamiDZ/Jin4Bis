@@ -104,6 +104,14 @@ void NetworkLogic::sendPlayerChoice(std::string choice)
 	++mSendCount;
 }
 
+void NetworkLogic::sendPlayerScore(int score)
+{
+	nByte eventCode = SendScore;
+	ExitGames::Common::Hashtable evData; // organize your payload data in any way you like as long as it is supported by Photons serialization
+	evData.put(static_cast<nByte>(0), static_cast<int>(score));
+	mLoadBalancingClient.opRaiseEvent(true, evData, eventCode); // true, because it is not acceptable to lose player actions
+	++mSendCount;
+}
 
 int NetworkLogic::getNumber(void)
 {
@@ -233,6 +241,17 @@ void NetworkLogic::customEventAction(int playerNr, nByte eventCode, const ExitGa
 				mGame->currentPage = std::make_shared<Questions>(mGame->vectorChoice, mGame->currentTheme, mGame->data);
 				dynamic_cast<Questions&>(*(mGame->currentPage)).Advance();
 			}
+		}
+		break;
+		break;
+	case SendScore:
+		if (!eventContent.getValue((nByte)0)) {
+			mpOutputListener->writeString(L"ERROR : Received incomplete message :-(");
+			exit(1);
+		}
+		else {
+			int scoreOpp = static_cast<int>(((ExitGames::Common::ValueObject<int>*)(eventContent.getValue((nByte)0)))->getDataCopy());
+			mGame->opponentScore = scoreOpp;
 		}
 		break;
 		break;

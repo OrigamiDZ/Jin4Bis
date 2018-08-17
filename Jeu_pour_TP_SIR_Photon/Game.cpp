@@ -29,6 +29,13 @@ Game::Game()
 		vectorOfZeros.push_back("0");
 	}
 
+	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
+	(*winOrLose).setFont(font);
+	(*winOrLose).setCharacterSize(40);
+	(*winOrLose).setFillColor(sf::Color::White);
+	(*winOrLose).setStyle(sf::Text::Regular);
+	(*winOrLose).setPosition(225, 380);
+
 }
 
 void Game::run()
@@ -48,6 +55,21 @@ void Game::run()
 		{
 			timeSinceLastUpdate -= TimePerFrame;
 			processEvents();
+			
+			if (gameEnd == true && opponentScore >= 0) {
+
+				if (currentScore >= opponentScore) {
+					//affichage score
+					(*winOrLose).setString("Gagné");
+				}
+				else {
+					//affichage score
+					(*winOrLose).setString("Perdu");
+				}
+				currentPage->listeTexte.push_back(std::move(winOrLose));
+				opponentScore = -1;
+				gameEnd = false;
+			}
 		}
 		mNetworkLogic.service();
 		render();
@@ -70,6 +92,8 @@ void Game::processEvents()
 
 			case Menus::PlaySolo :
 			case Menus::PlayMulti :
+				currentScore = -1;
+				opponentScore = -1;
 				currentMode = todo;
 				mNetworkLogic.sendPlayerChange(todo);
 				currentPage = pageMap[Menus::GoSecondMenu];
@@ -84,6 +108,8 @@ void Game::processEvents()
 			case Menus::Danse : 
 			case Menus::Rhetorique :
 			case Menus::Astrologie :
+				currentScore = -1;
+				opponentScore = -1;
 				currentTheme = todo;
 				mNetworkLogic.sendPlayerChange(todo);
 				if (currentMode == Menus::PlayMulti && opponentMode == Menus::PlayMulti && currentTheme == opponentTheme) {
@@ -100,6 +126,8 @@ void Game::processEvents()
 				break;
 			case Menus::GoFirstMenu :
 			case Menus::GoSecondMenu:
+				currentScore = -1;
+				opponentScore = -1;
 				currentPage = pageMap[todo];
 				break;
 
@@ -107,7 +135,12 @@ void Game::processEvents()
 			case Menus::Reponse2 :
 			case Menus::Reponse3: 
 				dynamic_cast<Questions&>(*currentPage).UpdateScore(todo);
+				currentScore = (dynamic_cast<Questions&>(*currentPage)).score;
 				dynamic_cast<Questions&>(*currentPage).Advance();
+				if (dynamic_cast<Questions&>(*currentPage).gameEnded == true) {
+					gameEnd = true;
+					mNetworkLogic.sendPlayerScore(currentScore);
+				}
 				break;
 
 			case Menus::Quitter :

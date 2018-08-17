@@ -30,6 +30,7 @@ public:
 	void service(void);
 	void sendPlayerChange(Menus::Action action);
 	void sendPlayerChoice(std::string choice);
+	void sendPlayerScore(int score);
 
 	void sendSubject(std::string subject);
 

@@ -199,7 +199,7 @@ void Questions::Advance()
 		//Recommencer menu item coordinates
 		std::unique_ptr<MenuItem> recommencerButton = std::make_unique<MenuItem>();
 		(*recommencerButton).rect.left = 121;
-		(*recommencerButton).rect.top = 437;
+		(*recommencerButton).rect.top = 457;
 		(*recommencerButton).rect.width = 309;
 		(*recommencerButton).rect.height = 33;
 		(*recommencerButton).action = currentTheme;
@@ -219,15 +219,15 @@ void Questions::Advance()
 		//affichage score
 		std::unique_ptr<sf::Text> scoreAff = std::make_unique<sf::Text>();
 		(*scoreAff).setFont(font);
-		(*scoreAff).setCharacterSize(90);
+		(*scoreAff).setCharacterSize(80);
 		(*scoreAff).setFillColor(sf::Color::White);
 		(*scoreAff).setStyle(sf::Text::Regular);
-		(*scoreAff).setPosition(240, 272);
+		(*scoreAff).setPosition(245, 272);
 		(*scoreAff).setString(std::to_string(score));
 
 		listeTexte.push_back(std::move(scoreAff));
 
-
+		gameEnded = true;
 	}
 	else {
 		this->~Questions();

@@ -196,24 +196,15 @@ void Questions::Advance()
 			listeTexte.pop_back();
 		}
 		
-		//Recommencer menu item coordinates
-		std::unique_ptr<MenuItem> recommencerButton = std::make_unique<MenuItem>();
-		(*recommencerButton).rect.left = 121;
-		(*recommencerButton).rect.top = 457;
-		(*recommencerButton).rect.width = 309;
-		(*recommencerButton).rect.height = 33;
-		(*recommencerButton).action = currentTheme;
-
-		//Histoire menu item coordinates
+		//Retour menu item coordinates
 		std::unique_ptr<MenuItem> AutreButton = std::make_unique<MenuItem>();
 
 		(*AutreButton).rect.left = 93;
 		(*AutreButton).rect.top = 546;
 		(*AutreButton).rect.width = 356;
 		(*AutreButton).rect.height = 33;
-		(*AutreButton).action = GoSecondMenu;
+		(*AutreButton).action = GameEnd;
 
-		listeBoutton.push_back(std::move(recommencerButton));
 		listeBoutton.push_back(std::move(AutreButton));
 
 		//affichage score

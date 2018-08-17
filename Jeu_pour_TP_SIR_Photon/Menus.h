@@ -15,7 +15,7 @@ public:
 	enum Action {
 		PlaySolo, PlayMulti,
 		Litterature, Histoire, Chant, Musique, Tragedie, Comedie, Danse, Rhetorique, Astrologie,
-		GoFirstMenu, GoSecondMenu,
+		GoFirstMenu, GoSecondMenu, QuestionGame, GameEnd,
 		Reponse1, Reponse2, Reponse3,
 		Quitter,
 		Vide

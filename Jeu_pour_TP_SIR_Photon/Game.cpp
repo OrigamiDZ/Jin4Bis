@@ -113,14 +113,16 @@ void Game::processEvents()
 				currentTheme = todo;
 				mNetworkLogic.sendPlayerChange(todo);
 				if (currentMode == Menus::PlayMulti && opponentMode == Menus::PlayMulti && currentTheme == opponentTheme) {
-					currentPage = std::make_shared<Questions>(vectorOfZeros, currentTheme, data);
+					pageMap[Menus::QuestionGame] = std::make_shared<Questions>(vectorOfZeros, currentTheme, data);
+					currentPage = pageMap[Menus::QuestionGame];
 					for (auto i : (dynamic_cast<Questions&>(*currentPage)).choix) {
 						mNetworkLogic.sendPlayerChoice(i);
 					}
 					dynamic_cast<Questions&>(*currentPage).Advance();
 				}
 				else if (currentMode == Menus::PlaySolo) {
-					currentPage = std::make_shared<Questions>(vectorOfZeros, currentTheme, data);
+					pageMap[Menus::QuestionGame] = std::make_shared<Questions>(vectorOfZeros, currentTheme, data);
+					currentPage = pageMap[Menus::QuestionGame];
 					dynamic_cast<Questions&>(*currentPage).Advance();
 				}
 				break;
@@ -141,6 +143,21 @@ void Game::processEvents()
 					gameEnd = true;
 					mNetworkLogic.sendPlayerScore(currentScore);
 				}
+				break;
+
+			case Menus::GameEnd :
+				currentMode = Menus::Vide;
+				currentTheme = Menus::Vide;
+				currentScore = -1;
+
+				opponentMode = Menus::Vide;
+				opponentTheme = Menus::Vide;
+				opponentScore = -1;
+
+				~(*currentPage);
+
+				currentPage = pageMap[Menus::GoFirstMenu];
+
 				break;
 
 			case Menus::Quitter :

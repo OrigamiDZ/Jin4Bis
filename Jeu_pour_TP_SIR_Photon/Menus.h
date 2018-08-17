@@ -1,9 +1,6 @@
 #pragma once
 #include "SFML\Window.hpp"
 #include "SFML\Graphics.hpp"
-#include <list>
-//#include <pugixml.hpp>
-#include "NetworkLogic.hpp"
 
 class Menus
 {
@@ -46,8 +43,6 @@ public:
 	std::vector<std::unique_ptr<MenuItem>> listeBoutton;
 	std::vector<std::shared_ptr<sf::Text>> listeTexte;
 	
-	Action currentModeM = Vide;
-	Action currentThemeM = Vide;
 
 };
 

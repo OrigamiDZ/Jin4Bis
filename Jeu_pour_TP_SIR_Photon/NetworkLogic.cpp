@@ -64,11 +64,42 @@ void NetworkLogic::service(void)
 	mLoadBalancingClient.service();
 }
 
-void NetworkLogic::sendPlayerChange(sf::Keyboard::Key key)
+void NetworkLogic::sendPlayerChange(Menus::Action action)
 {
-	nByte eventCode = PlayerChange; // use distinct event codes to distinguish between different types of events (for example 'move', 'shoot', etc.)
+	nByte eventCode;
 	ExitGames::Common::Hashtable evData; // organize your payload data in any way you like as long as it is supported by Photons serialization
-	evData.put(static_cast<nByte>(0), static_cast<int>(key));
+
+	switch (action) {
+	case Menus::PlaySolo :
+	case Menus::PlayMulti:
+		eventCode = ChangeMode; // use distinct event codes to distinguish between different types of events (for example 'move', 'shoot', etc.)
+		break;
+	case Menus::Litterature:
+	case Menus::Histoire:
+	case Menus::Chant:
+	case Menus::Musique:
+	case Menus::Tragedie:
+	case Menus::Comedie:
+	case Menus::Danse:
+	case Menus::Rhetorique:
+	case Menus::Astrologie:
+		eventCode = ChangeTheme; // use distinct event codes to distinguish between different types of events (for example 'move', 'shoot', etc.)
+		break;
+	default :
+		eventCode = Error; // use distinct event codes to distinguish between different types of events (for example 'move', 'shoot', etc.)
+		break;
+	}
+
+	evData.put(static_cast<nByte>(0), static_cast<int>(action));
+	mLoadBalancingClient.opRaiseEvent(true, evData, eventCode); // true, because it is not acceptable to lose player actions
+	++mSendCount;
+}
+
+void NetworkLogic::sendPlayerChoice(std::string choice)
+{
+	nByte eventCode = SendQuestions;
+	ExitGames::Common::Hashtable evData; // organize your payload data in any way you like as long as it is supported by Photons serialization
+	evData.put(static_cast<nByte>(0), static_cast<int>(std::stoi(choice)));
 	mLoadBalancingClient.opRaiseEvent(true, evData, eventCode); // true, because it is not acceptable to lose player actions
 	++mSendCount;
 }
@@ -168,14 +199,40 @@ void NetworkLogic::customEventAction(int playerNr, nByte eventCode, const ExitGa
 	ExitGames::Common::Hashtable eventContent = ExitGames::Common::ValueObject<ExitGames::Common::Hashtable>(eventContentObj).getDataCopy();
 	switch (eventCode)
 	{
-	case PlayerChange:
+	case ChangeMode:
 		if (!eventContent.getValue((nByte)0)) {
 			mpOutputListener->writeString(L"ERROR : Received incomplete message :-(");
 			exit(1);
 		}
 		else {
-			sf::Keyboard::Key key = static_cast<sf::Keyboard::Key>(((ExitGames::Common::ValueObject<int>*)(eventContent.getValue((nByte)0)))->getDataCopy());
-			//mGame->handlePlayerInput(playerNr - 1, key, true); // -1 because photon starts with player number 1
+			Menus::Action action = static_cast<Menus::Action>(((ExitGames::Common::ValueObject<int>*)(eventContent.getValue((nByte)0)))->getDataCopy());
+			mGame->opponentMode = action;
+		}
+		break;
+		break;
+	case ChangeTheme:
+		if (!eventContent.getValue((nByte)0)) {
+			mpOutputListener->writeString(L"ERROR : Received incomplete message :-(");
+			exit(1);
+		}
+		else {
+			Menus::Action action = static_cast<Menus::Action>(((ExitGames::Common::ValueObject<int>*)(eventContent.getValue((nByte)0)))->getDataCopy());
+			mGame->opponentTheme = action;
+		}
+		break;
+		break;
+	case SendQuestions:
+		if (!eventContent.getValue((nByte)0)) {
+			mpOutputListener->writeString(L"ERROR : Received incomplete message :-(");
+			exit(1);
+		}
+		else {
+			int numQuestion = static_cast<int>(((ExitGames::Common::ValueObject<int>*)(eventContent.getValue((nByte)0)))->getDataCopy());
+			(mGame->vectorChoice).push_back(std::to_string(numQuestion));
+			if (mGame->currentMode == Menus::PlayMulti && mGame->opponentMode == Menus::PlayMulti && mGame->currentTheme == mGame->opponentTheme && (mGame->vectorChoice).size() == 5) {
+				mGame->currentPage = std::make_shared<Questions>(mGame->vectorChoice, mGame->currentTheme, mGame->data);
+				dynamic_cast<Questions&>(*(mGame->currentPage)).Advance();
+			}
 		}
 		break;
 		break;

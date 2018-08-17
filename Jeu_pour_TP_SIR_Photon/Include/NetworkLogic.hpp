@@ -7,6 +7,7 @@
 
 #include "UIListener.h"
 #include "StdIO_UIListener.hpp"
+#include "Menus.h"
 
 class Game;
 
@@ -15,8 +16,11 @@ class NetworkLogic : public ExitGames::LoadBalancing::Listener
 public:
 	enum MessageType
 	{
-		PlayerChange,
-		ChangeSubject
+		ChangeMode,
+		ChangeTheme,
+		SendQuestions,
+		SendScore,
+		Error
 	};
 
 	NetworkLogic(const ExitGames::Common::JString& appID, const ExitGames::Common::JString& appVersion, Game *game);
@@ -24,7 +28,9 @@ public:
 	void NetworkLogic::joinOrCreateRoom(const ExitGames::Common::JString& roomName);
 	void disconnect(void);
 	void service(void);
-	void sendPlayerChange(sf::Keyboard::Key key);
+	void sendPlayerChange(Menus::Action action);
+	void sendPlayerChoice(std::string choice);
+
 	void sendSubject(std::string subject);
 
 	int getNumber(void);

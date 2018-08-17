@@ -1,12 +1,11 @@
 #include "Questions.h"
 
 
-Questions::Questions(bool solo, Menus::Action theme, LoadData & data)
+Questions::Questions(std::vector<std::string> choices, Menus::Action theme, LoadData & data)
 {
 	score = 0;
 	numTurn = 0;
 
-	playingSolo = solo;
 	currentTheme = theme;
 
 	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
@@ -71,26 +70,32 @@ Questions::Questions(bool solo, Menus::Action theme, LoadData & data)
 
 	//choix aléatoire des questions
 
-	if (nombreQuestionsTotalesParCatégorie < 5) {
-		for (int i = 0; i < 5; i++) {
-			choix.push_back(std::to_string(rand() % nombreQuestionsTotalesParCatégorie + 1));
-		}
+	if (choices.size() == 5 && choices[0].compare("0") != 0 && choices[1].compare("0") != 0 && choices[2].compare("0") != 0 && choices[3].compare("0") != 0 && choices[4].compare("0") != 0) {
+		choix = choices;
 	}
 	else {
-		choix.push_back(std::to_string(rand() % nombreQuestionsTotalesParCatégorie + 1));
+		if (nombreQuestionsTotalesParCatégorie < 5) {
+			for (int i = 0; i < 5; i++) {
+				choix.push_back(std::to_string(rand() % nombreQuestionsTotalesParCatégorie + 1));
+			}
+		}
+		else {
+			choix.push_back(std::to_string(rand() % nombreQuestionsTotalesParCatégorie + 1));
 
-		while (choix.size() != 5) {
-			int pris = 0;
-			std::string aleatoir = std::to_string(rand() % nombreQuestionsTotalesParCatégorie + 1);
-			for (auto i : choix)
-				if (i != aleatoir) {
-					pris++;
+			while (choix.size() != 5) {
+				int pris = 0;
+				std::string aleatoir = std::to_string(rand() % nombreQuestionsTotalesParCatégorie + 1);
+				for (auto i : choix)
+					if (i != aleatoir) {
+						pris++;
+					}
+				if (pris == choix.size()) {
+					choix.push_back(aleatoir);
 				}
-			if (pris == choix.size()) {
-				choix.push_back(aleatoir);
 			}
 		}
 	}
+
 
 	// GoFetch
 

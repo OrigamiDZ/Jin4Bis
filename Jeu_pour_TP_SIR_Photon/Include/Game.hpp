@@ -36,10 +36,19 @@ class Game : private sf::NonCopyable
 		std::unordered_map<Menus::Action, std::shared_ptr<Menus>>	pageMap;
 		std::shared_ptr<Menus>										currentPage;
 
-		Menus::Action												currentModeG = Menus::Vide;
-		Menus::Action												currentThemeG = Menus::Vide;
+		Menus::Action												currentMode = Menus::Vide;
+		Menus::Action												currentTheme = Menus::Vide;
+		int															currentScore;
+
+		Menus::Action												opponentMode = Menus::Vide;
+		Menus::Action												opponentTheme = Menus::Vide;
+		int															opponentScore;
 
 		LoadData													data;
+
+
+		std::vector<std::string>									vectorOfZeros;
+		std::vector<std::string>									vectorChoice;
 
 
 	private:

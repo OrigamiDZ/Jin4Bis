@@ -25,6 +25,10 @@ Game::Game()
 	pageMap[Menus::GoFirstMenu] = std::make_shared<FirstMenu>();
 	pageMap[Menus::GoSecondMenu] = std::make_shared<SecondMenu>();
 
+	for (int i = 0; i < 5; i++) {
+		vectorOfZeros.push_back("0");
+	}
+
 }
 
 void Game::run()
@@ -66,7 +70,8 @@ void Game::processEvents()
 
 			case Menus::PlaySolo :
 			case Menus::PlayMulti :
-				currentModeG = todo;
+				currentMode = todo;
+				mNetworkLogic.sendPlayerChange(todo);
 				currentPage = pageMap[Menus::GoSecondMenu];
 				break;
 
@@ -79,11 +84,20 @@ void Game::processEvents()
 			case Menus::Danse : 
 			case Menus::Rhetorique :
 			case Menus::Astrologie :
-				currentThemeG = todo;
-				currentPage = std::make_shared<Questions>(true, currentThemeG, data);
-				dynamic_cast<Questions&>(*currentPage).Advance();
+				currentTheme = todo;
+				mNetworkLogic.sendPlayerChange(todo);
+				if (currentMode == Menus::PlayMulti && opponentMode == Menus::PlayMulti && currentTheme == opponentTheme) {
+					currentPage = std::make_shared<Questions>(vectorOfZeros, currentTheme, data);
+					for (auto i : (dynamic_cast<Questions&>(*currentPage)).choix) {
+						mNetworkLogic.sendPlayerChoice(i);
+					}
+					dynamic_cast<Questions&>(*currentPage).Advance();
+				}
+				else if (currentMode == Menus::PlaySolo) {
+					currentPage = std::make_shared<Questions>(vectorOfZeros, currentTheme, data);
+					dynamic_cast<Questions&>(*currentPage).Advance();
+				}
 				break;
-				
 			case Menus::GoFirstMenu :
 			case Menus::GoSecondMenu:
 				currentPage = pageMap[todo];

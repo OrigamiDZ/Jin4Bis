@@ -3,14 +3,13 @@
 #include "LoadData.h"
 #include "SFML\Window.hpp"
 #include "SFML\Graphics.hpp"
-#include <list>
 #include <pugixml.hpp>
 #include "unordered_map"
 
 class Questions : public Menus
 {
 public:
-	Questions(bool solo, Menus::Action theme, LoadData & data);
+	Questions(std::vector<std::string> choices, Menus::Action theme, LoadData & data);
 	~Questions();
 
 	void Questions::Advance();
@@ -25,7 +24,6 @@ public:
 	int					numTurn;
 	int					score;
 
-	bool				playingSolo; 
 	Menus::Action		currentTheme;
 
 	std::shared_ptr<sf::Text> pointeurBonneRep = std::make_shared<sf::Text>();

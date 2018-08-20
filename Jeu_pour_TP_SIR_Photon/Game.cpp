@@ -154,8 +154,6 @@ void Game::processEvents()
 				opponentTheme = Menus::Vide;
 				opponentScore = -1;
 
-				~(*currentPage);
-
 				currentPage = pageMap[Menus::GoFirstMenu];
 
 				break;

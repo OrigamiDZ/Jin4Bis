@@ -238,7 +238,7 @@ void NetworkLogic::customEventAction(int playerNr, nByte eventCode, const ExitGa
 			int numQuestion = static_cast<int>(((ExitGames::Common::ValueObject<int>*)(eventContent.getValue((nByte)0)))->getDataCopy());
 			(mGame->vectorChoice).push_back(std::to_string(numQuestion));
 			if (mGame->currentMode == Menus::PlayMulti && mGame->opponentMode == Menus::PlayMulti && mGame->currentTheme == mGame->opponentTheme && (mGame->vectorChoice).size() == 5) {
-				mGame->pageMap[Menus::QuestionGame] = std::make_shared<Questions>(mGame->vectorOfZeros, mGame->currentTheme, mGame->data);
+				mGame->pageMap[Menus::QuestionGame] = std::make_shared<Questions>(mGame->vectorChoice, mGame->currentTheme, mGame->data);
 				mGame->currentPage = mGame->pageMap[Menus::QuestionGame];
 				dynamic_cast<Questions&>(*(mGame->currentPage)).Advance();
 			}

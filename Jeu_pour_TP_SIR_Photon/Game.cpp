@@ -30,6 +30,7 @@ Game::Game()
 	}
 
 	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
+	winOrLose = std::make_shared<sf::Text>();
 	(*winOrLose).setFont(font);
 	(*winOrLose).setCharacterSize(40);
 	(*winOrLose).setFillColor(sf::Color::White);
@@ -57,21 +58,20 @@ void Game::run()
 			processEvents();
 			
 			if (gameEnd == true && opponentScore >= 0) {
-
 				if (currentScore >= opponentScore) {
 					//affichage score
-					(*winOrLose).setString("Gagné");
+					winOrLose->setString("Gagné");
 				}
 				else {
 					//affichage score
-					(*winOrLose).setString("Perdu");
+					winOrLose->setString("Perdu");
 				}
 				currentPage->listeTexte.push_back(std::move(winOrLose));
 				opponentScore = -1;
 				gameEnd = false;
 			}
+			mNetworkLogic.service();
 		}
-		mNetworkLogic.service();
 		render();
 	}
 
@@ -146,16 +146,8 @@ void Game::processEvents()
 				break;
 
 			case Menus::GameEnd :
-				currentMode = Menus::Vide;
-				currentTheme = Menus::Vide;
-				currentScore = -1;
-
-				opponentMode = Menus::Vide;
-				opponentTheme = Menus::Vide;
-				opponentScore = -1;
-
+				restart();
 				currentPage = pageMap[Menus::GoFirstMenu];
-
 				break;
 
 			case Menus::Quitter :
@@ -178,5 +170,29 @@ void Game::render()
 	mWindow.clear();
 
 	(*currentPage).display(mWindow);
+}
+
+void Game::restart()
+{
+	currentMode = Menus::Vide;
+	currentTheme = Menus::Vide;
+	currentScore = -1;
+
+	opponentMode = Menus::Vide;
+	opponentTheme = Menus::Vide;
+	opponentScore = -1;
+
+	while (!vectorChoice.empty())
+	{
+		vectorChoice.pop_back();
+	}
+
+	winOrLose = std::make_shared<sf::Text>();
+	(*winOrLose).setFont(font);
+	(*winOrLose).setCharacterSize(40);
+	(*winOrLose).setFillColor(sf::Color::White);
+	(*winOrLose).setStyle(sf::Text::Regular);
+	(*winOrLose).setPosition(225, 380);
+	(*winOrLose).setPosition(225, 380);
 }
 

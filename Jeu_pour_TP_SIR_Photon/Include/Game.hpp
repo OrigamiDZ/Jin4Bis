@@ -44,7 +44,7 @@ class Game : private sf::NonCopyable
 		Menus::Action												opponentTheme = Menus::Vide;
 		int															opponentScore = -1;
 
-		std::unique_ptr<sf::Text>									winOrLose = std::make_unique<sf::Text>();
+		std::shared_ptr<sf::Text>									winOrLose;
 
 		LoadData													data;
 
@@ -56,6 +56,7 @@ class Game : private sf::NonCopyable
 	private:
 		void														processEvents();
 		void														render();
+		void														restart();
 
 		sf::Font													font;
 

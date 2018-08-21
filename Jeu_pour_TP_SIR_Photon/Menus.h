@@ -6,7 +6,7 @@ class Menus
 {
 public:
 	Menus();
-	~Menus();
+	virtual ~Menus();
 
 	enum Id {
 		FirstMenu, SecondMenu,

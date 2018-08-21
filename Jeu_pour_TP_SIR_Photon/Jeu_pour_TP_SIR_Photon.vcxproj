@@ -158,7 +158,7 @@
     <ClCompile Include="StdIO_UIListener.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FirstMenu.h" />
+    <ClInclude Include="Include\FirstMenu.h" />
     <ClInclude Include="Include\Game.hpp" />
     <ClInclude Include="Include\ResourceHolder.hpp" />
     <ClInclude Include="Include\ResourceIdentifiers.hpp" />
@@ -166,10 +166,10 @@
     <ClInclude Include="Include\StringHelpers.hpp" />
     <ClInclude Include="Include\NetworkLogic.hpp" />
     <ClInclude Include="Include\UIListener.h" />
-    <ClInclude Include="LoadData.h" />
-    <ClInclude Include="Menus.h" />
-    <ClInclude Include="Questions.h" />
-    <ClInclude Include="SecondMenu.h" />
+    <ClInclude Include="Include\LoadData.h" />
+    <ClInclude Include="Include\Menus.h" />
+    <ClInclude Include="Include\Questions.h" />
+    <ClInclude Include="Include\SecondMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\ResourceHolder.inl" />

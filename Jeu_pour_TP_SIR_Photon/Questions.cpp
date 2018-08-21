@@ -13,29 +13,29 @@ Questions::Questions(std::vector<std::string> choices, Menus::Action theme, Load
 	fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu-question.png");
 
 	//Update listeTexte
-	(*questionAff).setFont(font);
-	(*questionAff).setCharacterSize(20);
-	(*questionAff).setFillColor(sf::Color::Black);
-	(*questionAff).setStyle(sf::Text::Regular);
-	(*questionAff).setPosition(158, 39);
+	questionAff->setFont(font);
+	questionAff->setCharacterSize(20);
+	questionAff->setFillColor(sf::Color::Black);
+	questionAff->setStyle(sf::Text::Regular);
+	questionAff->setPosition(158, 39);
 
-	(*reponse1).setFont(font);
-	(*reponse1).setCharacterSize(25);
-	(*reponse1).setFillColor(sf::Color::Black);
-	(*reponse1).setStyle(sf::Text::Regular);
-	(*reponse1).setPosition(187, 241);
+	reponse1->setFont(font);
+	reponse1->setCharacterSize(25);
+	reponse1->setFillColor(sf::Color::Black);
+	reponse1->setStyle(sf::Text::Regular);
+	reponse1->setPosition(175, 241);
 
-	(*reponse2).setFont(font);
-	(*reponse2).setCharacterSize(25);
-	(*reponse2).setFillColor(sf::Color::Black);
-	(*reponse2).setStyle(sf::Text::Regular);
-	(*reponse2).setPosition(187, 378);
+	reponse2->setFont(font);
+	reponse2->setCharacterSize(25);
+	reponse2->setFillColor(sf::Color::Black);
+	reponse2->setStyle(sf::Text::Regular);
+	reponse2->setPosition(175, 378);
 
-	(*reponse3).setFont(font);
-	(*reponse3).setCharacterSize(25);
-	(*reponse3).setFillColor(sf::Color::Black);
-	(*reponse3).setStyle(sf::Text::Regular);
-	(*reponse3).setPosition(187, 515);
+	reponse3->setFont(font);
+	reponse3->setCharacterSize(25);
+	reponse3->setFillColor(sf::Color::Black);
+	reponse3->setStyle(sf::Text::Regular);
+	reponse3->setPosition(175, 515);
 
 	listeTexte.push_back(std::move(questionAff));
 	listeTexte.push_back(std::move(reponse1));
@@ -43,23 +43,23 @@ Questions::Questions(std::vector<std::string> choices, Menus::Action theme, Load
 	listeTexte.push_back(std::move(reponse3));
 
 	//Update listeBoutton
-	(*reponse1Button).rect.left = 112;
-	(*reponse1Button).rect.top = 213;
-	(*reponse1Button).rect.width = 333;
-	(*reponse1Button).rect.height = 93;
-	(*reponse1Button).action = Reponse1;
+	reponse1Button->rect.left = 112;
+	reponse1Button->rect.top = 213;
+	reponse1Button->rect.width = 333;
+	reponse1Button->rect.height = 93;
+	reponse1Button->action = Reponse1;
 
-	(*reponse2Button).rect.left = 112;
-	(*reponse2Button).rect.top = 351;
-	(*reponse2Button).rect.width = 333;
-	(*reponse2Button).rect.height = 93;
-	(*reponse2Button).action = Reponse2;
+	reponse2Button->rect.left = 112;
+	reponse2Button->rect.top = 351;
+	reponse2Button->rect.width = 333;
+	reponse2Button->rect.height = 93;
+	reponse2Button->action = Reponse2;
 
-	(*reponse3Button).rect.left = 112;
-	(*reponse3Button).rect.top = 492;
-	(*reponse3Button).rect.width = 333;
-	(*reponse3Button).rect.height = 93;
-	(*reponse3Button).action = Reponse3;
+	reponse3Button->rect.left = 112;
+	reponse3Button->rect.top = 492;
+	reponse3Button->rect.width = 333;
+	reponse3Button->rect.height = 93;
+	reponse3Button->action = Reponse3;
 
 	listeBoutton.push_back(std::move(reponse1Button));
 	listeBoutton.push_back(std::move(reponse2Button));
@@ -199,22 +199,22 @@ void Questions::Advance()
 		//Retour menu item coordinates
 		std::unique_ptr<MenuItem> AutreButton = std::make_unique<MenuItem>();
 
-		(*AutreButton).rect.left = 93;
-		(*AutreButton).rect.top = 546;
-		(*AutreButton).rect.width = 356;
-		(*AutreButton).rect.height = 33;
-		(*AutreButton).action = GameEnd;
+		AutreButton->rect.left = 93;
+		AutreButton->rect.top = 546;
+		AutreButton->rect.width = 356;
+		AutreButton->rect.height = 33;
+		AutreButton->action = GameEnd;
 
 		listeBoutton.push_back(std::move(AutreButton));
 
 		//affichage score
 		std::unique_ptr<sf::Text> scoreAff = std::make_unique<sf::Text>();
-		(*scoreAff).setFont(font);
-		(*scoreAff).setCharacterSize(80);
-		(*scoreAff).setFillColor(sf::Color::White);
-		(*scoreAff).setStyle(sf::Text::Regular);
-		(*scoreAff).setPosition(245, 272);
-		(*scoreAff).setString(std::to_string(score));
+		scoreAff->setFont(font);
+		scoreAff->setCharacterSize(80);
+		scoreAff->setFillColor(sf::Color::White);
+		scoreAff->setStyle(sf::Text::Regular);
+		scoreAff->setPosition(245, 272);
+		scoreAff->setString(std::to_string(score));
 
 		listeTexte.push_back(std::move(scoreAff));
 

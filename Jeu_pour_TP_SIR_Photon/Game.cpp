@@ -92,8 +92,6 @@ void Game::processEvents()
 
 			case Menus::PlaySolo :
 			case Menus::PlayMulti :
-				currentScore = -1;
-				opponentScore = -1;
 				currentMode = todo;
 				mNetworkLogic.sendPlayerChange(todo);
 				currentPage = pageMap[Menus::GoSecondMenu];
@@ -108,8 +106,6 @@ void Game::processEvents()
 			case Menus::Danse : 
 			case Menus::Rhetorique :
 			case Menus::Astrologie :
-				currentScore = -1;
-				opponentScore = -1;
 				currentTheme = todo;
 				mNetworkLogic.sendPlayerChange(todo);
 				if (currentMode == Menus::PlayMulti && opponentMode == Menus::PlayMulti && currentTheme == opponentTheme) {
@@ -178,8 +174,9 @@ void Game::restart()
 	currentTheme = Menus::Vide;
 	currentScore = -1;
 
-	opponentMode = Menus::Vide;
-	opponentTheme = Menus::Vide;
+	gameEnd = false;
+
+	mNetworkLogic.sendPlayerChange(Menus::Vide);
 	opponentScore = -1;
 
 	while (!vectorChoice.empty())

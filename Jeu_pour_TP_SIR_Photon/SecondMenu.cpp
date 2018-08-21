@@ -8,7 +8,6 @@ SecondMenu::SecondMenu()
 	fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu-second.png");
 
 	//Litterature menu item coordinates
-	std::unique_ptr<MenuItem> litteratureButton(new MenuItem);
 	(*litteratureButton).rect.left = 158;
 	(*litteratureButton).rect.top = 76;
 	(*litteratureButton).rect.width = 243;
@@ -16,7 +15,6 @@ SecondMenu::SecondMenu()
 	(*litteratureButton).action = Litterature;
 
 	//Histoire menu item coordinates
-	std::unique_ptr<MenuItem> histoireButton(new MenuItem);
 	(*histoireButton).rect.left = 189;
 	(*histoireButton).rect.top = 136;
 	(*histoireButton).rect.width = 184;
@@ -24,7 +22,6 @@ SecondMenu::SecondMenu()
 	(*histoireButton).action = Histoire;
 
 	//Chant menu item coordinates
-	std::unique_ptr<MenuItem> chantButton(new MenuItem);
 	(*chantButton).rect.left = 206;
 	(*chantButton).rect.top = 196;
 	(*chantButton).rect.width = 140;
@@ -32,7 +29,6 @@ SecondMenu::SecondMenu()
 	(*chantButton).action = Chant;
 
 	//Musique menu item coordinates
-	std::unique_ptr<MenuItem> musiqueButton(new MenuItem);
 	(*musiqueButton).rect.left = 188;
 	(*musiqueButton).rect.top = 258;
 	(*musiqueButton).rect.width = 179;
@@ -40,7 +36,6 @@ SecondMenu::SecondMenu()
 	(*musiqueButton).action = Musique;
 
 	//Tragedie menu item coordinates
-	std::unique_ptr<MenuItem> tragedieButton(new MenuItem);
 	(*tragedieButton).rect.left = 179;
 	(*tragedieButton).rect.top = 317;
 	(*tragedieButton).rect.width = 193;
@@ -48,7 +43,6 @@ SecondMenu::SecondMenu()
 	(*tragedieButton).action = Tragedie;
 
 	//Comedie menu item coordinates
-	std::unique_ptr<MenuItem> comedieButton(new MenuItem);
 	(*comedieButton).rect.left = 185;
 	(*comedieButton).rect.top = 376;
 	(*comedieButton).rect.width = 183;
@@ -56,7 +50,6 @@ SecondMenu::SecondMenu()
 	(*comedieButton).action = Comedie;
 
 	//Danse menu item coordinates
-	std::unique_ptr<MenuItem> danseButton(new MenuItem);
 	(*danseButton).rect.left = 212;
 	(*danseButton).rect.top = 436;
 	(*danseButton).rect.width = 127;
@@ -64,7 +57,6 @@ SecondMenu::SecondMenu()
 	(*danseButton).action = Danse;
 
 	//Rhetorique menu item coordinates
-	std::unique_ptr<MenuItem> rhetoriqueButton(new MenuItem);
 	(*rhetoriqueButton).rect.left = 149;
 	(*rhetoriqueButton).rect.top = 496;
 	(*rhetoriqueButton).rect.width = 254;
@@ -72,7 +64,6 @@ SecondMenu::SecondMenu()
 	(*rhetoriqueButton).action = Rhetorique;
 
 	//Astrologie menu item coordinates
-	std::unique_ptr<MenuItem> astrologieButton(new MenuItem);
 	(*astrologieButton).rect.left = 150;
 	(*astrologieButton).rect.top = 555;
 	(*astrologieButton).rect.width = 248;
@@ -80,7 +71,6 @@ SecondMenu::SecondMenu()
 	(*astrologieButton).action = Astrologie;
 
 	//Back menu item coordinates
-	std::unique_ptr<MenuItem> backButton(new MenuItem);
 	(*backButton).rect.left = 222;
 	(*backButton).rect.top = 618;
 	(*backButton).rect.width = 120;

@@ -65,19 +65,19 @@
     <ClInclude Include="Include\StdIO_UIListener.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Menus.h">
+    <ClInclude Include="Include\FirstMenu.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="FirstMenu.h">
+    <ClInclude Include="Include\LoadData.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="SecondMenu.h">
+    <ClInclude Include="Include\Menus.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Questions.h">
+    <ClInclude Include="Include\Questions.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="LoadData.h">
+    <ClInclude Include="Include\SecondMenu.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

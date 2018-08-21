@@ -69,6 +69,10 @@ void NetworkLogic::sendPlayerChange(Menus::Action action)
 	nByte eventCode;
 	ExitGames::Common::Hashtable evData; // organize your payload data in any way you like as long as it is supported by Photons serialization
 
+
+	nByte eventCodebis;
+	ExitGames::Common::Hashtable evDatabis; // organize your payload data in any way you like as long as it is supported by Photons serialization
+
 	switch (action) {
 	case Menus::PlaySolo :
 	case Menus::PlayMulti:
@@ -84,6 +88,13 @@ void NetworkLogic::sendPlayerChange(Menus::Action action)
 	case Menus::Rhetorique:
 	case Menus::Astrologie:
 		eventCode = ChangeTheme; // use distinct event codes to distinguish between different types of events (for example 'move', 'shoot', etc.)
+		break;
+	case Menus::Vide:
+		eventCode = ChangeTheme;
+
+		eventCodebis = ChangeMode;
+		evDatabis.put(static_cast<nByte>(0), static_cast<int>(action));
+		mLoadBalancingClient.opRaiseEvent(true, evDatabis, eventCodebis); // true, because it is not acceptable to lose player actions
 		break;
 	default :
 		eventCode = Error; // use distinct event codes to distinguish between different types of events (for example 'move', 'shoot', etc.)

@@ -188,6 +188,13 @@
     <Image Include="images\the_muses-menu.png" />
     <Image Include="images\the_muses.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Questions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="font\DAYROM__.ttf" />
+    <Font Include="font\DIOGENES.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

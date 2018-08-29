@@ -86,7 +86,7 @@ void Game::processEvents()
 		switch (event.type)
 		{
 		case sf::Event::MouseButtonPressed: {
-			Menus::Action todo = (*currentPage).handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
+			Menus::Action todo = currentPage->handleClick(mWindow, event.mouseButton.x, event.mouseButton.y);
 
 			switch (todo) {
 
@@ -124,8 +124,6 @@ void Game::processEvents()
 				break;
 			case Menus::GoFirstMenu :
 			case Menus::GoSecondMenu:
-				currentScore = -1;
-				opponentScore = -1;
 				currentPage = pageMap[todo];
 				break;
 

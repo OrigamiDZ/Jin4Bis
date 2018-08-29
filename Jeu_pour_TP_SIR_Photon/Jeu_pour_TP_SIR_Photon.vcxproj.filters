@@ -110,4 +110,11 @@
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Questions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="font\DAYROM__.ttf" />
+    <Font Include="font\DIOGENES.ttf" />
+  </ItemGroup>
 </Project>

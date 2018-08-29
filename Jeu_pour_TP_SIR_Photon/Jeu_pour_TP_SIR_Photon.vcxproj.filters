@@ -88,6 +88,7 @@
     <None Include="Include\StringHelpers.inl">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\the_muses.png">

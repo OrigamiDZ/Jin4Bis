@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document>
+  <litterature>
+    
+  </litterature>
+  <histoire>
+    
+  </histoire>
+  <chant>
+    
+  </chant>
+  <musique>
+    
+  </musique>
+  <tragedie>
+    <question id ="1" enonce ="Comment se nomme la belle-mere d'Hippolyte, fils de Thesee ?">
+      <reponse valeur="Hera" bool="false" />
+      <reponse valeur="Phedre" bool="true" />
+      <reponse valeur="Andromaque" bool="false" />
+    </question>
+    <question id ="2" enonce ="Qui Antigone souhaite-t-elle enterrer malgre de l'interdiction de son oncle Creon ?">
+      <reponse valeur="Polynice" bool="true" />
+      <reponse valeur="Eteocle" bool="false" />
+      <reponse valeur="Tiresias" bool="false" />
+    </question>
+      <question id ="3" enonce ="Lequel de ces auteurs antiques grecs n'est pas un auteur tragique ?">
+      <reponse valeur="Eschyle" bool="false" />
+      <reponse valeur="Sophocle" bool="false" />
+      <reponse valeur="Aristophane" bool="true" />
+    </question>
+      <question id ="4" enonce ="Quelles sont les emotions du registre tragique ?">
+      <reponse valeur="La crainte et la pitie" bool="true" />
+      <reponse valeur="La pitie et la tristesse" bool="false" />
+      <reponse valeur="L'incertitude et l'angoisse" bool="false" />
+    </question>
+    <question id ="5" enonce ="Le Cid de Racine est-elle une oeuvre tragique ?">
+      <reponse valeur="Oui" bool="false" />
+      <reponse valeur="Non" bool="false" />
+      <reponse valeur="A moitie" bool="true" />
+    </question>
+  </tragedie>
+  <comedie>
+    
+  </comedie>
+  <danse>
+    
+  </danse>
+  <rhetorique>
+    
+  </rhetorique>
+  <astrologie>
+    
+  </astrologie>
+    
+</document>

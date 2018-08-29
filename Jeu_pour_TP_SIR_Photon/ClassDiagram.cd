@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LoadData" Collapsed="true">
+    <Position X="2.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAQAAAAAIAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Include\LoadData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FirstMenu" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABIAAAAAAAAABAAAAoAAAAAAAAAAA=</HashCode>
+      <FileName>Include\FirstMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIIAhAADAAAAAAAAgAICUAAAQgAACiQAAAQA0AQBAA=</HashCode>
+      <FileName>Include\Game.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Menus" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIABBAAAAAAAAAAAAgBAEAAAAAAAAQCAAAAgI=</HashCode>
+      <FileName>Include\Menus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkLogic" Collapsed="true">
+    <Position X="7" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QbAEIIAACAgIAAARjAAIAQAAEUAAAEBGBFEEIAAVhlE=</HashCode>
+      <FileName>Include\NetworkLogic.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questions" Collapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQIAAAAMAAEABAAAIgAIAAAgBABAAAAEEBUAAAAAoAA=</HashCode>
+      <FileName>Include\Questions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecondMenu" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEAAiAAABAAAAAAACAQAAAAQEAgBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Include\SecondMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StdIO_UIListener" Collapsed="true">
+    <Position X="9" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAACAAAABAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Include\StdIO_UIListener.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIListener" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAAACAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Include\UIListener.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

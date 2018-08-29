@@ -5,7 +5,7 @@
 LoadData::LoadData()
 {
 
-	doc.load_file("C:/Dev/JIN4/JIN4/Questions.xml");
+	doc.load_file("./Questions.xml");
 
 	questions = doc.child("document");
 	

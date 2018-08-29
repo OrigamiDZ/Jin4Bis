@@ -2,7 +2,7 @@
 
 FirstMenu::FirstMenu()
 {
-	fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu.png");
+	fond.loadFromFile("./images/the_muses-menu.png");
 
 	//FirstMenu menu item coordinates
 	playSoloButton->rect.left = 190;

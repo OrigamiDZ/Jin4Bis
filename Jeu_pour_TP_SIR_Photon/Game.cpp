@@ -29,7 +29,7 @@ Game::Game()
 		vectorOfZeros.push_back("0");
 	}
 
-	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
+	font.loadFromFile("./font/DIOGENES.ttf");
 	winOrLose = std::make_shared<sf::Text>();
 	(*winOrLose).setFont(font);
 	(*winOrLose).setCharacterSize(40);

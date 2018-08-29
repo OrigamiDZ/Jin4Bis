@@ -8,9 +8,9 @@ Questions::Questions(std::vector<std::string> choices, Menus::Action theme, Load
 
 	currentTheme = theme;
 
-	font.loadFromFile("C:/Dev/JIN4/JIN4/font/DIOGENES.ttf");
+	font.loadFromFile("./font/DIOGENES.ttf");
 
-	fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu-question.png");
+	fond.loadFromFile("./images/the_muses-menu-question.png");
 
 	//Update listeTexte
 	questionAff->setFont(font);
@@ -184,7 +184,7 @@ void Questions::Advance()
 	else if (numTurn == 5) {
 
 
-		fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu-fin.png");
+		fond.loadFromFile("./images/the_muses-menu-fin.png");
 
 		while (!listeBoutton.empty())
 		{

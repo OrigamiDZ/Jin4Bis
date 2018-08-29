@@ -5,7 +5,7 @@
 SecondMenu::SecondMenu()
 {
 
-	fond.loadFromFile("c:/Dev/JIN4/JIN4/images/the_muses-menu-second.png");
+	fond.loadFromFile("./images/the_muses-menu-second.png");
 
 	//Litterature menu item coordinates
 	(*litteratureButton).rect.left = 158;
